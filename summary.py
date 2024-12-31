@@ -100,42 +100,4 @@ def bottom_interface(text,lang,creativity_level):
     with st.chat_message("assistant"):
         st.markdown(extracted)
     audio_thread.join()
-
-
-text= """ChatGPT is a generative artificial intelligence chatbot developed by OpenAI and launched in 2022.
-     It is currently based on the GPT-4o large language model. ChatGPT can generate human-like conversational
-     responses and enables users to refine and steer a conversation towards a desired length, format, style,
-     level of detail, and language. It is credited with accelerating the AI boom, which has led to ongoing 
-     rapid investment in and public attention to the field of artificial intelligence. Some observers have 
-     raised concern about the potential of ChatGPT and similar programs to displace human intelligence, enable 
-     plagiarism, or fuel misinformation."""
-
-prompt_ = f"""
-    You are an AI assistant helping the user generate multiple-choice questions (MCQs) 
-    based on the following text: '{text}' . Please generate difficulty level MCQs from the text. 
-    Each question should be returned in JSON format as follows:
-
-    [
-        {{
-            "question": "Your question text here",
-            "options": {{
-                "A": "Option A text",
-                "B": "Option B text",
-                "C": "Option C text",
-                "D": "Option D text"
-            }},
-            "correct_answer": "Correct option label (A, B, C, or D)"
-        }},
-        ...
-    ]
-
-    Ensure the JSON contains a list of MCQs, with each MCQ adhering to the structure above.
-    """
     
-
-
-
-
-
-
-
