@@ -4,6 +4,7 @@ python-dotenv
 pyttsx3
 langdetect
 gTTS
+audio-recorder-streamlit
 PyPDF2
 python-pptx
 google-generativeai
