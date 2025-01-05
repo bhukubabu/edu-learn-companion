@@ -53,20 +53,7 @@ def voice_input(base_text):
 
 def response(text,question_):
     global llm_model
-    prompt=f"""
-    You are an help-ful assistant , you will answer to the questions asked by the user 
-    based on the given context. your answer should be creative but to the point and precise. If the 
-    question asked by the user is not inside the context provided to you answer from your own knowledge base
-    The context is as follows :  {text}
-    Use this json schema to return the response:
-    [
-        {
-            "question": "{question_}",
-            "answer":"your sample answer here",
-        }
-        ...
-    ]
-    Each response should be returned in the mentioned schema"""
+    
     response=llm_model.invoke(prompt)
     json_match=re.search(r'\[.*\]',response,re.DOTALL)
     if json_match:
