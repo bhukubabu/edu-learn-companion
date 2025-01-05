@@ -53,7 +53,7 @@ else:
     text_chunks=None
 
 
-menu_options=st.sidebar.radio("Choose task",options=['Magic Summarizer','Ask Questions','Generate Questions','Edu-resource'],horizontal=True)
+menu_options=st.sidebar.radio("Choose task",options=['Edu-resource','Magic Summarizer','Ask Questions','Generate Questions'],horizontal=True)
 if menu_options=="Generate Questions":
     gen_qs.sidebar_generate_questions(text_chunks)
 elif menu_options=="Magic Summarizer":
