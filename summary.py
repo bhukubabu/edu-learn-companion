@@ -5,7 +5,7 @@ import pyttsx3
 import threading
 import streamlit as st
 from gtts import gTTS
-from playsound import playsound
+#from playsound import playsound
 from langdetect import detect
 from model_ import load_model
 import speech_recognition as sr
