@@ -6,6 +6,7 @@ gTTS
 PyPDF2
 google-generativeai
 SpeechRecognition
+langchain-google-genai
 pandas
 streamlit-folium
 chardet
