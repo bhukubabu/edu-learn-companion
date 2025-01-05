@@ -19,9 +19,9 @@ def generate_short_des(question):
         with st.chat_message('assistant'):
             st.warning(f"**Q{j+1}. {i['question']}**")
         with st.expander("Show Answer "):
-            st.success(f"**Answer :** {i['correct_answer']} ",icon="✅")
+            st.markdown(f"**Answer :** {i['correct_answer']} ",icon="✅")
      #st.rerun()
-     time.sleep(1)
+     #time.sleep(1)
 
 def sidebar_generate_questions(text_chunks):
     st.title("📚 Smart Edu-Learn Companion")
