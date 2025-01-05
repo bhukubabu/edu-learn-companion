@@ -5,7 +5,7 @@ pyttsx3
 gTTS
 PyPDF2
 google-generativeai
-speech-recognition
+SpeechRecognition
 pandas
 streamlit-folium
 chardet
