@@ -14,7 +14,8 @@ def load_llm_model():
 llm_model=load_llm_model()
 
 def output_interface(base_text,text):
-    response_to_question=response(text=base_text, question_= text)
+    with st.status(label="running"):
+        response_to_question=response(text=base_text, question_= text)
     thread=threading.Thread(target=voice_response,args=(response_to_question,))
     thread.start()
     with st.chat_message('assistant'):
@@ -34,28 +35,27 @@ def voice_input(base_text):
     with sr.Microphone() as source:
         recognizer.adjust_for_ambient_noise(source)
             #st.markdown("Listening....")
-        while True:
-            try:
+        try:
                 audio=recognizer.listen(source,timeout=10)
                 with st.spinner("⏳ Processing your voice input..."):
                     text=recognizer.recognize_google(audio)
                 if "thank you" in text:
-                    break
+                    pass
                 else:
                     output_interface(base_text, text)
                 
-            except sr.UnknownValueError:
+        except sr.UnknownValueError:
                 st.error("Sorry 😩 could not understand properly")
                 #return None
-            except sr.RequestError:
+        except sr.RequestError:
                 st.error("Sorry 😩 could not understand properly")
                 #return None
 
 def response(text,question_):
     global llm_model
-    prompt=f"""
+    prompt= f """
     You are an help-ful assistant , you will answer to the questions asked by the user 
-    based on the given context. your answer should be creative but to the point. If the 
+    based on the given context. your answer should be creative but to the point and precise. If the 
     question asked by the user is not inside the context provided to you answer from your own knowledge base
     The context is as follows :  {text}
     Use this json schema to return the response:
