@@ -11,7 +11,7 @@ def generate_mcq_tf(question):
             st.markdown(f"{key}) {val}")
         with st.expander("Show Answer "):
             st.success(f"**Answer :** {i['correct_answer']} {i['options'][i['correct_answer']]}",icon="✅")
-
+     st.rerun()
 
 def generate_short_des(question):
      for j,i in enumerate(question):
@@ -19,7 +19,7 @@ def generate_short_des(question):
             st.warning(f"**Q{j+1}. {i['question']}**")
         with st.expander("Show Answer "):
             st.success(f"**Answer :** {i['correct_answer']} ",icon="✅")
-
+     st.rerun()
 
 def sidebar_generate_questions(text_chunks):
     st.title("📚 Smart Edu-Learn Companion")
