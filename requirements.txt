@@ -5,6 +5,7 @@ pyttsx3
 langdetect
 gTTS
 PyPDF2
+pyAudio
 python-pptx
 google-generativeai
 SpeechRecognition
