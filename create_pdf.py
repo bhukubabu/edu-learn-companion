@@ -1,4 +1,4 @@
-from fpdf import FPDF
+#from fpdf import FPDF
 from PyPDF2 import PdfReader
 from pptx import Presentation
 
