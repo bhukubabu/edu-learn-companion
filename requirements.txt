@@ -8,5 +8,4 @@ google-generativeai
 pandas
 streamlit-folium
 chardet
-re
 IPython
