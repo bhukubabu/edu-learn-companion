@@ -5,6 +5,7 @@ import threading
 import streamlit as st
 import speech_recognition as sr
 from model_ import load_model
+from audio_recorder_streamlit import audio_recorder
 #from main import text_chunks
 
 @st.cache_data
@@ -14,10 +15,10 @@ def load_llm_model():
 llm_model=load_llm_model()
 
 def output_interface(base_text,text):
-    with st.status(label="running"):
+    with st.spinner(text="running"):
         response_to_question=response(text=base_text, question_= text)
-    thread=threading.Thread(target=voice_response,args=(response_to_question,))
-    thread.start()
+    #thread=threading.Thread(target=voice_response,args=(response_to_question,))
+    #thread.start()
     with st.chat_message('assistant'):
         st.success(response_to_question)
     st.markdown("Please tell me whether you need further assistance.I am pleased to help you.")
@@ -30,26 +31,32 @@ def voice_response(content: str):
 
 
 def voice_input(base_text):
-    recognizer=sr.Recognizer()
+    recognizer = sr.Recognizer()
+    try:
+        # Record audio
+        audio_bytes = audio_recorder(pause_threshold=2.0, sample_rate=41_000)
+        data=st.audio(audio_bytes,format="audio/wav")
+        # Check if audio_bytes is valid
+        if not audio_bytes:
+            st.error("No audio detected, please try again.")
+            return
+        
+        with st.spinner("⏳ Processing your voice input..."):
+            text = recognizer.recognize_google(audio_bytes)
+        
+        if "thank you" in text:
+            pass
+        else:
+            output_interface(base_text, text)
     
-    with sr.Microphone() as source:
-        recognizer.adjust_for_ambient_noise(source)
-            #st.markdown("Listening....")
-        try:
-                audio=recognizer.listen(source,timeout=10)
-                with st.spinner("⏳ Processing your voice input..."):
-                    text=recognizer.recognize_google(audio)
-                if "thank you" in text:
-                    pass
-                else:
-                    output_interface(base_text, text)
-                
-        except sr.UnknownValueError:
-                st.error("Sorry 😩 could not understand properly")
-                #return None
-        except sr.RequestError:
-                st.error("Sorry 😩 could not understand properly")
-                #return None
+    except sr.UnknownValueError:
+        st.error("Sorry 😩 could not understand properly")
+    except sr.RequestError:
+        st.error("Sorry 😩 could not understand properly")
+    except ValueError as e:
+        st.error(f"Error with audio data: {e}")
+
+
 
 def response(text,question_):
     global llm_model
@@ -85,18 +92,21 @@ def face(base_text):
     st.title("Raise your queries 🗣 - I will find answer on your behalf")
     with st.chat_message('assistant'):
         st.warning("Your edu-learn companion is at your service. Tell me how can I help you today")
-    speak=st.button("Speak 🔊")
+    
     if base_text==None:
         st.sidebar.error("No file selected")
     else:
         st.sidebar.success("Knowledge base created")
     
-    if speak:
-        voice_input(base_text)
-        
-        
-    #response(text=text_chunks, question_="What are the five components of a data communication system? answer in single line")
-    #response(text=text_chunks, question_="answer the previous question in descriptive way")
+    with st.container(height=200):
+        data=st.text_area("your question here")
+    ans=st.button("Generate answer ")
+    if ans:
+        #voice_input(base_text)
+        if data!="":
+            output_interface(base_text, data)
+        else:
+            st.error("please enter text")
         
         
     #response(text=text_chunks, question_="What are the five components of a data communication system? answer in single line")
