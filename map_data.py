@@ -8,7 +8,6 @@ from IPython.display import HTML
 import pandas as pd
 
 
-
 def get_city_names():
     with open("map_data.csv","rb") as f:
         encoding=chardet.detect(f.read())["encoding"]
