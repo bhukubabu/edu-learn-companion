@@ -1,0 +1,12 @@
+streamlit
+streamlit-lottie
+python-dotenv
+pyttsx3
+gTTS
+PyPDF2
+google-generativeai
+pandas
+streamlit-folium
+chardet
+re
+IPython
