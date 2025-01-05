@@ -2,7 +2,7 @@ streamlit
 streamlit-lottie
 python-dotenv
 pyttsx3
-pyaudio
+pyaudio==0.2.14
 langdetect
 gTTS
 audio-recorder-streamlit
