@@ -51,11 +51,12 @@ def sidebar_generate_questions(text_chunks):
     if gen:
         if text_chunks!=None:
             with st.spinner(f"Have paitence......\n Your 📚 Smart Edu-Learn Companion is generating best response for you"):
-                st.session_state.generated_content=generate_response(text_chunks,difficulty,question_type)
+                    generated_content=generate_response(text_chunks,difficulty,question_type)
+                    st.session_state.genrated_content=genrated_content
             if question_type=='MCQ (multiple choice question)' or question_type=='TRUE/FALSE':
                     generate_mcq_tf(st.session_state.generated_content)
             if question_type=='Short' or question_type=='Descriptive':
-                     generate_short_des(st.session_state.generated_content)
+                    generate_short_des(st.session_state.generated_content)
         else:
             st.sidebar.error("Please select file")
     else:
