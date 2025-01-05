@@ -21,7 +21,7 @@ def generate_short_des(question):
         with st.expander("Show Answer "):
             st.markdown(f"**Answer :** {i['correct_answer']} ",icon="✅")
      #st.rerun()
-     #time.sleep(1)
+     time.sleep(1)
 
 def sidebar_generate_questions(text_chunks):
     st.title("📚 Smart Edu-Learn Companion")
@@ -51,11 +51,11 @@ def sidebar_generate_questions(text_chunks):
     if gen:
         if text_chunks!=None:
             with st.spinner(f"Have paitence......\n Your 📚 Smart Edu-Learn Companion is generating best response for you"):
-                generated_content=generate_response(text_chunks,difficulty,question_type)
+                st.session_state.generated_content=generate_response(text_chunks,difficulty,question_type)
                 if question_type=='MCQ (multiple choice question)' or question_type=='TRUE/FALSE':
-                    generate_mcq_tf(generated_content)
+                    generate_mcq_tf(st.session_state.generated_content)
                 elif question_type=='Short' or questions_type=='Descriptive':
-                     generate_short_des(generated_content)
+                     generate_short_des(st.session_state.generated_content)
         else:
             st.sidebar.error("Please select file")
     else:
