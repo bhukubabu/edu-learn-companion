@@ -20,7 +20,7 @@ def generate_short_des(question):
             st.warning(f"**Q{j+1}. {i['question']}**")
         with st.expander("Show Answer "):
             st.success(f"**Answer :** {i['correct_answer']} ",icon="✅")
-     st.rerun()
+     #st.rerun()
      time.sleep(1)
 
 def sidebar_generate_questions(text_chunks):
