@@ -2,6 +2,7 @@ streamlit
 streamlit-lottie
 python-dotenv
 pyttsx3
+langdetect
 gTTS
 PyPDF2
 google-generativeai
