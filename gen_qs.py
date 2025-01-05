@@ -54,7 +54,7 @@ def sidebar_generate_questions(text_chunks):
                 st.session_state.generated_content=generate_response(text_chunks,difficulty,question_type)
                 if question_type=='MCQ (multiple choice question)' or question_type=='TRUE/FALSE':
                     generate_mcq_tf(st.session_state.generated_content)
-                elif question_type=='Short' or questions_type=='Descriptive':
+                if question_type=='Short' or question_type=='Descriptive':
                      generate_short_des(st.session_state.generated_content)
         else:
             st.sidebar.error("Please select file")
