@@ -1,6 +1,9 @@
 import random
 import json
 import time
+import pandas as pd
+from PyPDF2 import PdfReader
+from fpdf import FPDF
 import streamlit as st
 
 #------------------- Page configuration ------------------------#
@@ -10,10 +13,13 @@ st.set_page_config(
     layout="centered",
     initial_sidebar_state="expanded"
 )
+text_chunks=None
 
-from ques import face
-from summary import top_interface
-from gen_qs import sidebar_generate_questions
+import ques 
+import gen_qs
+import summary 
+#from pptx import Presentation
+import map_data
 from create_pdf import extract_pdf_text,extract_ppt_text,split_text
 
 
@@ -22,15 +28,15 @@ st.markdown(
     """
     <style>
         section[data-testid="stSidebar"] {
-            width: 550px !important; # Set the width to your desired value
+            width: 750px !important;
         }
     </style>
     """,
     unsafe_allow_html=True,
 )
 
-# ---------------------------------------------- Sidebar for file upload and task selection -------------------------------------#
-text_chunks=None
+# ------------------------------ Sidebar for file upload and task selection --------------------------------#
+
 st.sidebar.header("Upload File")
 uploaded_file = st.sidebar.file_uploader("Upload a PDF or PPTX", type=["pdf", "pptx"])
 if uploaded_file:
@@ -46,17 +52,18 @@ if uploaded_file:
     text_chunks=split_text(extracted_text)
 else:
     text_chunks=None
-    
-#------------------------------------------------ Sidebartask selection ---------------------------------------------------#
 
-menu_options=st.sidebar.radio("Choose task",options=['Magic Summarizer','Ask Questions','Generate Questions'],horizontal=True)
+
+menu_options=st.sidebar.radio("Choose task",options=['Magic Summarizer','Ask Questions','Generate Questions','Edu-resource'],horizontal=True)
 if menu_options=="Generate Questions":
-        sidebar_generate_questions(text_chunks)
+    gen_qs.sidebar_generate_questions(text_chunks)
 elif menu_options=="Magic Summarizer":
     if st.sidebar.button("Generate more ✨"):
         st.rerun()
-    top_interface()
-    st.sidebar.warning("You can either select file or type or speak ")   
+    summary.top_interface()
+    st.sidebar.warning("You can either select file or type or speak ")
 elif menu_options=="Ask Questions":
-        face(text_chunks)
-        
+    ques.face(text_chunks)
+elif menu_options=="Edu-resource":
+    map_data.main_int()
+     
