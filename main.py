@@ -3,7 +3,6 @@ import json
 import time
 import pandas as pd
 from PyPDF2 import PdfReader
-from fpdf import FPDF
 import streamlit as st
 
 #------------------- Page configuration ------------------------#
