@@ -6,7 +6,7 @@ from model_ import generate_response
 def generate_mcq_tf(question):
      for j,i in enumerate(question):
         with st.chat_message('assistant'):
-            st.warning(f"**Q{j+1}. {i['question']}**")
+            st.warning(f"* Q{j+1}. {i['question']} *")
         for key,val in i['options'].items():
             st.markdown(f"{key}) {val}")
         with st.expander("Show Answer "):
