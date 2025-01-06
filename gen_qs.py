@@ -52,7 +52,7 @@ def sidebar_generate_questions(text_chunks):
         if text_chunks!=None:
             with st.spinner(f"Have paitence......\n Your 📚 Smart Edu-Learn Companion is generating best response for you"):
                     generated_content=generate_response(text_chunks,difficulty,question_type)
-                    st.session_state.genrated_content=genrated_content
+                    st.session_state.generated_content=genrated_content
             if question_type=='MCQ (multiple choice question)' or question_type=='TRUE/FALSE':
                     generate_mcq_tf(st.session_state.generated_content)
             if question_type=='Short' or question_type=='Descriptive':
