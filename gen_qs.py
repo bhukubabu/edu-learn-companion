@@ -64,5 +64,5 @@ def sidebar_generate_questions(text_chunks):
             generated_content=st.session_state.generated_content
             if question_type=='MCQ (multiple choice question)' or question_type=='TRUE/FALSE':
                     generate_mcq_tf(generated_content)
-            else:
+            elif question_type=='Short' or question_type=='Descriptive':
                      generate_short_des(generated_content)
