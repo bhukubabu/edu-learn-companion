@@ -26,7 +26,8 @@ def generate_short_des(question):
 def sidebar_generate_questions(text_chunks):
     st.title("📚 Smart Edu-Learn Companion")
     #st.title("📚 Smart Edu-Learn Companion - Automated Quiz Generator")
-    st.markdown("""
+    with st.chat_message('ai'):
+               st.markdown("""
     Hello user are you struggling with your exam preparation ?
     Your smart edu-learn companion is here to guide you with strategic
     preparation strategies.From Multiple choice questions, one-liner to 
