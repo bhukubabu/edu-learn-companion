@@ -63,12 +63,12 @@ def record():
 def top_interface():
     st.title("🤖AI Summarizer ✨")
     with st.container(height=400,border=True):
-        if st.button("Speak..."):
-            recorded=record()
-            if recorded!=None:
-                st.text_area(recorded,height=250)
-                content=recorded[:]
-        else:
+        #if st.button("Speak..."):
+            #recorded=record()
+           # if recorded!=None:
+               # st.text_area(recorded,height=250)
+               # content=recorded[:]
+        #else:
             content=st.text_area("Write your text here",height=250)
     try:
         lang=detect(content)
