@@ -11,7 +11,7 @@ def load_model():
     temperature=0,
     top_k=40,
     max_output_tokens=8192,
-    top_p=0.95,
+    top_p=0.85,
     )
     return llm
 
