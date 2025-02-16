@@ -19,8 +19,11 @@ def output_interface(base_text,text):
         response_to_question=response(text=base_text, question_= text)
     #thread=threading.Thread(target=voice_response,args=(response_to_question,))
     #thread.start()
-    with st.chat_message('assistant'):
-        st.success(response_to_question)
+    for j,i in enumerate(response_to_question):
+        with st.chat_message('assistant'):
+            st.warning(f"**{i['question']}**")
+        with st.expander("Show Answer "):
+            st.success(f"**Answer :** {i['answer']}",icon="✅")
     st.markdown("Please tell me whether you need further assistance.I am pleased to help you.")
 
 
@@ -81,8 +84,8 @@ def response(text,question_):
         json_str=json_match.group(0)
         try:
             extracted=json.loads(json_str)
-            print(extracted[0]['answer'])
-            return extracted[0]['answer']
+            #print(extracted[0]['answer'])
+            return extracted
         except:
             return "na"
     
