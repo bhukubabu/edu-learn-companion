@@ -59,7 +59,7 @@ def main_int():
 
     col1,col2=st.columns([2,1],gap="medium")
     with col1:
-        city=st.selectbox("**Select your city**",options=names,key="choosen_city",on_change=callback_func)
+        city=st.selectbox("**Select your city**",options=names,key="choosen_city")
     with col2:
         resource_type=st.radio("**Select resource type**",options=["Public Libary","Computer Center"],index=None)
 
