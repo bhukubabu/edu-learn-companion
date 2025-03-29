@@ -1,4 +1,5 @@
 import time
+import os
 import folium
 import chardet
 import streamlit as st
@@ -37,18 +38,15 @@ def generate_map(df, selected_city):
 def side_data(data):
     with st.sidebar:    
         for _,i in data.iterrows():
+            base='https://www.google.com/maps/search/'
+            place="".join(i['name'].split(" "))
+            ne=os.path.join(base,place)
             with st.chat_message("assistant"):
                 st.success(f"""
                     **{i['name']}**\n
                     {i['des']}\n
-                    [Read more]{i['url']}
+                    [Read more]{ne}
                 """)
-
-def callback_func():
-    #x=generate_map(df,st.session_state.choosen_city)
-    #plot_map(x)
-    pass
-
 
 
 def main_int():
