@@ -15,12 +15,12 @@ def load_llm_model():
 llm_model=load_llm_model()
 
 def output_interface(base_text,text):
-    with st.spinner(text="running"):
+    with st.spinner(text="Agent running"):
         response_to_question=response(text=base_text, question_= text)
     #thread=threading.Thread(target=voice_response,args=(response_to_question,))
     #thread.start()
-    for j,i in enumerate(response_to_question):
-        with st.chat_message('assistant'):
+    
+    with st.chat_message('assistant'):
             st.success(f"**{i['answer']}**",icon="✅")
     st.markdown("Please tell me whether you need further assistance.I am pleased to help you.")
 
