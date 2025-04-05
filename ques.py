@@ -21,7 +21,7 @@ def output_interface(base_text,text):
     #thread.start()
     
     with st.chat_message('assistant'):
-            st.success(f"**{response_to_question['answer']}**",icon="✅")
+            st.success(f"**{response_to_question[0]['answer']}**",icon="✅")
     st.markdown("Please tell me whether you need further assistance.I am pleased to help you.")
 
 
