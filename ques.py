@@ -21,8 +21,6 @@ def output_interface(base_text,text):
     #thread.start()
     for j,i in enumerate(response_to_question):
         with st.chat_message('assistant'):
-            st.warning(f"**{i['question']}**")
-        with st.expander("Show Answer "):
             st.success(f"**Answer :** {i['answer']}",icon="✅")
     st.markdown("Please tell me whether you need further assistance.I am pleased to help you.")
 
