@@ -74,7 +74,7 @@ def response(text,question_):
         }}
         ...
     ]
-    Each response should be returned in the mentioned schema
+    if user input has multiple question return the answer divided in paragraph but as one single answer
     """
     response=llm_model.invoke(prompt)
     json_match=re.search(r'\[.*\]',response,re.DOTALL)
