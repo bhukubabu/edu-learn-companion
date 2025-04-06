@@ -11,10 +11,10 @@ from model_ import load_model
 import speech_recognition as sr
 
 
-def magic_summarizer(text,level):
+def magic_summarizer(text,level,content):
     llm_model=load_model()
     prompt=f"""
-    please generate {level} summary of the text given below {text} 
+    please generate {level} short summary as per user request {text} based on the content {content}
     and return the output in json format. Please answer in the user provided language always.
     Each response  should be returned in JSON format as given below :
     [
@@ -60,7 +60,7 @@ def record():
         return None
 
 
-def top_interface():
+def top_interface(chunks):
     st.title("🤖AI Summarizer ✨")
     with st.container(height=400,border=True):
         #if st.button("Speak..."):
@@ -84,11 +84,11 @@ def top_interface():
         cre="standard"
     
     if st.button("Summarize"):
-        bottom_interface(content,cre,lang)
+        bottom_interface(content,cre,chunks)
 
 
-def bottom_interface(text,creativity_level,lang="en"):
-    extracted=magic_summarizer(text,creativity_level)
+def bottom_interface(text,creativity_level,chunk):
+    extracted=magic_summarizer(text,creativity_level,chunk)
     #st.markdown(extracted)
     #audio_file=gTTS(text = extracted, lang=lang)
     #audio_file_path="audio_output.mp3"
