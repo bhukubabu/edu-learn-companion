@@ -84,10 +84,10 @@ def top_interface():
         cre="standard"
     
     if st.button("Summarize"):
-        bottom_interface(content,lang,cre)
+        bottom_interface(content,cre,lang)
 
 
-def bottom_interface(text,lang,creativity_level):
+def bottom_interface(text,creativity_level,lang="en"):
     extracted=magic_summarizer(text,creativity_level)
     audio_file=gTTS(text = extracted, lang=lang)
     audio_file_path="audio_output.mp3"
