@@ -89,7 +89,7 @@ def top_interface():
 
 def bottom_interface(text,creativity_level,lang="en"):
     extracted=magic_summarizer(text,creativity_level)
-    st.markdown(extracted)
+    #st.markdown(extracted)
     #audio_file=gTTS(text = extracted, lang=lang)
     #audio_file_path="audio_output.mp3"
     #if os.path.exists(audio_file_path):
@@ -100,5 +100,5 @@ def bottom_interface(text,creativity_level,lang="en"):
 
     with st.chat_message("assistant"):
         st.markdown(extracted)
-    audio_thread.join()
+    #audio_thread.join()
     
