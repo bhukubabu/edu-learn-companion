@@ -59,7 +59,7 @@ if menu_options=="Generate Questions":
 elif menu_options=="Magic Summarizer":
     if st.sidebar.button("Generate more ✨"):
         st.rerun()
-    summary.top_interface()
+    summary.top_interface(text_chunks)
     st.sidebar.warning("You can either select file or type or speak ")
 elif menu_options=="Ask Questions":
     ques.face(text_chunks)
