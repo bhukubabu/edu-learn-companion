@@ -3,11 +3,11 @@ import re
 import json
 from langchain_google_genai import GoogleGenerativeAI
 
-
+#os.environ['GEMINI_API_KEY']
 def load_model():
     llm=GoogleGenerativeAI(
     model="gemini-1.5-pro",
-    api_key=os.environ['GEMINI_API_KEY'],
+    api_key='AIzaSyAI7aogli9ALJi6-V5KndMhkNMHsNEvV5M',
     temperature=0,
     top_k=40,
     max_output_tokens=8192,
