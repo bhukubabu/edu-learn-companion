@@ -18,13 +18,13 @@ import summary
 import map_data
 from create_pdf import extract_pdf_text, extract_ppt_text, split_text
 
-  st.markdown("""""", unsafe_allow_html=True)
+st.markdown("""""", unsafe_allow_html=True)
 
-  st.sidebar.header("Upload File")
-  uploaded_file = st.sidebar.file_uploader("Upload a PDF or PPTX", type=["pdf", "pptx"])
+st.sidebar.header("Upload File")
+uploaded_file = st.sidebar.file_uploader("Upload a PDF or PPTX", type=["pdf", "pptx"])
 
   # ✅ Use session_state to persist text_chunks across reruns
-  if uploaded_file:
+if uploaded_file:
       st.sidebar.success("File selected...")
 
       # Only reprocess if a new file is uploaded
@@ -42,7 +42,7 @@ from create_pdf import extract_pdf_text, extract_ppt_text, split_text
 
       text_chunks = st.session_state.text_chunks
 
-  else:
+else:
       text_chunks = None
       # Clear stored chunks if file is removed
       st.session_state.pop("text_chunks", None)
