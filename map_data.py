@@ -10,13 +10,26 @@ import pandas as pd
 
 
 def get_city_names():
-    with open("map_data.csv","rb") as f:
-        encoding=chardet.detect(f.read())["encoding"]
-    df=pd.read_csv("map_data.csv",encoding=encoding)
-    df['lat']=df['lat'].astype(float)
-    df['long']=df['long'].astype(float)
-    HTML(df.to_html(render_links=True,escape=False))
-    return list(df['city'].unique()),df
+      # Try chardet first, fall back to common encodings
+      with open("map_data.csv", "rb") as f:
+          raw = f.read()
+
+      detected = chardet.detect(raw)["encoding"]
+
+      for encoding in [detected, "utf-8", "latin-1", "cp1252"]:
+          try:
+              df = pd.read_csv("map_data.csv", encoding=encoding)
+              break
+          except (UnicodeDecodeError, TypeError):
+              continue
+      else:
+          raise ValueError("Could not decode map_data.csv with any known encoding")
+
+      df['lat'] = df['lat'].astype(float)
+      df['long'] = df['long'].astype(float)
+      HTML(df.to_html(render_links=True, escape=False))
+      return list(df['city'].unique()), df
+
 
 
 def generate_map(df, selected_city):
