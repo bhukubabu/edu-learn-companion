@@ -8,7 +8,7 @@ from model_ import load_model
 from audio_recorder_streamlit import audio_recorder
 #from main import text_chunks
 
-@st.cache_data
+@st.cache_resource
 def load_llm_model():
     return load_model()
 
