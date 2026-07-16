@@ -1,22 +1,22 @@
-  import random
-  import json
-  import time
-  import pandas as pd
-  from PyPDF2 import PdfReader
-  import streamlit as st
+import random
+import json
+import time
+import pandas as pd
+from PyPDF2 import PdfReader
+import streamlit as st
 
-  st.set_page_config(
+st.set_page_config(
       page_icon="",
       page_title="Study Booster",
       layout="centered",
       initial_sidebar_state="expanded"
-  )
+)
 
-  import ques
-  import gen_qs
-  import summary
-  import map_data
-  from create_pdf import extract_pdf_text, extract_ppt_text, split_text
+import ques
+import gen_qs
+import summary
+import map_data
+from create_pdf import extract_pdf_text, extract_ppt_text, split_text
 
   st.markdown("""""", unsafe_allow_html=True)
 
@@ -54,14 +54,14 @@
       horizontal=True
   )
 
-  if menu_options == "Generate Questions":
+if menu_options == "Generate Questions":
       gen_qs.sidebar_generate_questions(text_chunks)
-  elif menu_options == "Magic Summarizer":
+elif menu_options == "Magic Summarizer":
       if st.sidebar.button("Generate more ✨"):
           st.rerun()
       summary.top_interface(text_chunks)
       st.sidebar.warning("You can either select file or type or speak")
-  elif menu_options == "Ask Questions":
+elif menu_options == "Ask Questions":
       ques.face(text_chunks)
-  elif menu_options == "Edu-resource":
+elif menu_options == "Edu-resource":
       map_data.main_int()
