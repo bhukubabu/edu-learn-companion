@@ -48,11 +48,11 @@ else:
       st.session_state.pop("text_chunks", None)
       st.session_state.pop("uploaded_file_name", None)
 
-  menu_options = st.sidebar.radio(
+menu_options = st.sidebar.radio(
       "Choose task",
       options=['Edu-resource', 'Magic Summarizer', 'Ask Questions', 'Generate Questions'],
       horizontal=True
-  )
+)
 
 if menu_options == "Generate Questions":
       gen_qs.sidebar_generate_questions(text_chunks)
