@@ -5,9 +5,12 @@ from langchain_google_genai import GoogleGenerativeAI
 
 #os.environ['GEMINI_API_KEY']
 def load_model():
+    api_key = st.secrets.get("GOOGLE_API_KEY") or os.environ.get("GOOGLE_API_KEY")
+    if not api_key:
+          raise ValueError("GOOGLE_API_KEY not found in secrets or environment.")
     llm=GoogleGenerativeAI(
     model="gemini-1.5-pro",
-    api_key='AIzaSyAI7aogli9ALJi6-V5KndMhkNMHsNEvV5M',
+    api_key=api_key,
     temperature=0,
     top_k=40,
     max_output_tokens=8192,
